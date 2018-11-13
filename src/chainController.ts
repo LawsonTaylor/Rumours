@@ -47,7 +47,7 @@ router.post("/transaction/new", (req: Request, res: Response) => {
 router.get("/get-chain", (req: Request, res: Response) => {
   const chain: Block[] = blockchain.getChain();
   const chainData = JSON.stringify(chain);
-  const length = this.blockchain.length;
+  const length = chain.length;
   const response = {
     'chain': chainData,
     'length': length,

@@ -134,13 +134,16 @@ export class Blockchain {
       response.then(
         res => {
             if(res.ok){
-                let data = res.body;
-                let length = data.length;
-                let chain = data.chain;
-                if (length > maxChainLength && this.validChain(chain)) {
-                    maxChainLength = length;
-                    newChain = chain;
-                }
+                let responseJSON = res.json();
+                responseJSON.then((data) => {
+                  let length = data.length;
+                  let chain = data.chain;
+                  if (length > maxChainLength && this.validChain(chain)) {
+                      maxChainLength = length;
+                      newChain = chain;
+                  }
+                })
+              
             } else {
                 throw new Error("resquest not ok :'(");
             }

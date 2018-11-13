@@ -24,4 +24,27 @@ router.post('/nodes/register', (req: Request, res: Response) => {
 
 });
 
+router.get('/nodes/resolve', (req: Request, res: Response) => {
+  
+  const replaced = blockchain.resolveConflicts();
+  let response = {};
+
+  if (replaced === true){
+    response = {
+      'message': 'The chain was replaced',
+      'chain': blockchain.getChain(),
+      'new_chain': true,
+    }
+  } else {
+    response = {
+      'message': "Our chain is an authority",
+      'chain': blockchain.getChain(),
+      'new_chain': false,
+    }
+  }
+
+  res.send(response);
+
+});
+
 
