@@ -31,6 +31,10 @@ export class Blockchain {
     return this.chain;
   }
 
+  getNodes(): Set<string> {
+    return this.nodes;
+  }
+
   newBlock(previousHash: string, proof: number): Block {
     // create new block and add to chain;
 

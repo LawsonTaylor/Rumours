@@ -1,9 +1,13 @@
 /* app/server.ts */
-
 import express from 'express';
+import uuidv4 from "uuid/v4";
 
 // Import WelcomeController from controllers entry point
+import { Blockchain } from './Blockchain';
 import { ChainController } from './chainController';
+
+export const blockchain: Blockchain = new Blockchain();
+export const UID = uuidv4();
 
 // Create a new express application instance
 const app = express();

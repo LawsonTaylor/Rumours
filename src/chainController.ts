@@ -1,18 +1,14 @@
 import { Router, Request, Response, Express } from "express";
-import { Blockchain, Block, Transaction } from "./Blockchain";
-import uuidv4 from "uuid/v4";
+import { Block, Transaction } from "./Blockchain";
+import { blockchain, UID } from './Server';
 
 const router: Router = Router();
-
-const blockchain: Blockchain = new Blockchain();
-
-const UID = uuidv4();
 
 router.get("/", (req: Request, res: Response) => {
   res.send("This is a blockchain app!!!");
 });
 
-router.put("/mine", (req: Request, res: Response) => {
+router.post("/mine", (req: Request, res: Response) => {
   const lastBlock = blockchain.lastBlock();
   const lastProof = lastBlock["proof"];
   const proof = blockchain.proofOfWork(lastProof);
